@@ -17,7 +17,6 @@
     [
         {"protocol": "freedom","tag": "direct","settings": {}},
         {"protocol": "blackhole","tag": "blocked","settings": {}},
-        {"protocol": "socks","tag": "sockstor","settings": {"servers": [{"address": "127.0.0.1","port": 9050}]}},
         {"protocol": "freedom","tag": "twotag","streamSettings": {"network": "domainsocket","dsSettings": {"path": "apath","abstract": true}}}    
     ],
     
