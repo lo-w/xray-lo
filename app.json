@@ -1,0 +1,30 @@
+{
+    "name": "xray-lo",
+    "description": "only deploy xray on heroku",
+    "keywords": ["vmess vless"],
+    "env": {
+        "AUUID": {
+            "description": "UUID URL: https://www.uuidgenerator.net",
+            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/uuid"
+        },
+        "CADDYIndexPage": {
+            "description": "CADDY View",
+            "value": "https://raw.githubusercontent.com/caddyserver/dist/master/welcome/index.html"
+        },
+        "CONFIGCADDY": {
+            "description": "CADDY CONFIG",
+            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/Caddyfile"
+        },
+        "CONFIGXRAY": {
+            "description": "XRAY CONFIG",
+            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/xray.json"
+        },
+        "StoreFiles": {
+            "description": "STORE FILES",
+            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/StoreFiles"
+        }
+    },
+    "website": "https://github.com/lothario5/xray-lo",
+    "repository": "https://github.com/lothario5/xray-lo",
+    "stack": "container"
+}
