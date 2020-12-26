@@ -1,1 +1,1 @@
-curl -sk https://www.uuidgenerator.net/version1 | sed -n 's/.*<span  id="generated-uuid">\([^<]*\)<\/span>.*/\1/p'
+bash < (curl -sk https://www.uuidgenerator.net/version1 | sed -n 's/.*<span  id="generated-uuid">\([^<]*\)<\/span>.*/\1/p')
