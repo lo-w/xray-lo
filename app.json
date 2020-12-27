@@ -13,7 +13,7 @@
         },
         "CONFIGCADDY": {
             "description": "CADDY CONFIG",
-            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/Caddyfile"
+            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/caddy.json"
         },
         "CONFIGXRAY": {
             "description": "XRAY CONFIG",
