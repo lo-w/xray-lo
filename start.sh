@@ -3,7 +3,6 @@
 # configs
 mkdir -p /etc/caddy/ /usr/share/caddy && echo -e "User-agent: *\nDisallow: /" >/usr/share/caddy/robots.txt
 wget $CADDYIndex -O /usr/share/caddy/index.html && unzip -qo /usr/share/caddy/index.html -d /usr/share/caddy/ && mv /usr/share/caddy/*/* /usr/share/caddy/
-wget -qO- $CONFIGCADDY | sed -e "1c :$PORT" -e "s/\$AUUID/$AUUID/g" >/etc/caddy/caddy.json
 wget -qO- $CONFIGXRAY | sed -e "s/\$AUUID/$AUUID/g" >/xray.json
 
 # storefiles
