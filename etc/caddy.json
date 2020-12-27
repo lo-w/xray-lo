@@ -7,7 +7,7 @@
         "http": {
             "servers": {
                 "srv0": {
-                    "listen": [":"],
+                    "listen": ["unix//etc/caddy/xray"],
                     "listener_wrappers": [{"wrapper": "proxy_protocol"}],
                     "routes": [
                         {
