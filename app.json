@@ -5,7 +5,7 @@
     "env": {
         "AUUID": {
             "description": "UUID URL: https://www.uuidgenerator.net",
-            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/uuid"
+            "value": "curl -sk https://www.uuidgenerator.net/version1 | sed -n 's/.*<span  id="generated-uuid">\([^<]*\)<\/span>.*/\1/p'"
         },
         "CADDYIndexPage": {
             "description": "CADDY View",
