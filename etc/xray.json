@@ -12,7 +12,7 @@
                     {"path":"/vmess","dest":2345,"xver":1}
                 ]
             },
-            "streamSettings": {"network": "tcp","security": "xtls",}
+            "streamSettings": {"network": "tcp","security": "xtls"}
         },
         {
             "port": 1234,"listen": "127.0.0.1","protocol": "vless",
