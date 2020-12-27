@@ -15,7 +15,7 @@
         },
         {
             "port": 1234,"listen": "127.0.0.1","protocol": "vless",
-            "settings": {"clients": [{"id": "$AUUID","level": 0,}],"decryption": "none"},
+            "settings": {"clients": [{"id": "$AUUID","level": 0}],"decryption": "none"},
             "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vless"}}
         },
         {
