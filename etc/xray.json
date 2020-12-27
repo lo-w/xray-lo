@@ -1,18 +1,30 @@
 {
-    "inbounds": 
-    [
+    "inbounds": [
         {
-            "listen": "/etc/caddy/vmess","protocol": "vmess",
-            "settings": {"clients": [{"id": "$AUUID"}]},
-            "streamSettings": {"network": "ws","wsSettings": {"path": "/vmess"}}
+            "protocol": "vless",
+            "settings": 
+            {
+                "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct","level": 0}],
+                "decryption": "none",
+                "fallbacks": [
+                    {"path":"/vless","dest":1234,"xver":1},
+                    {"path":"/vmess","dest":2345,"xver":1}
+                ]
+            },
+            "streamSettings": {"network": "tcp","security": "xtls",}
         },
         {
-            "listen": "/etc/caddy/vless","protocol": "vless",
-            "settings": {"clients": [{"id": "$AUUID"}],"decryption": "none"},
-            "streamSettings": {"network": "ws","wsSettings": {"path": "/vless"}}
+            "port": 1234,"listen": "/etc/caddy/vless","protocol": "vless",
+            "settings": {"clients": [{"id": "$AUUID","level": 0,}],"decryption": "none"},
+            "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vless"}}
+        },
+        {
+            "port": 2345,"listen": "/etc/caddy/vmess","protocol": "vmess",
+            "settings": {"clients": [{"id": "$AUUID","level": 0}]},
+            "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vmess"}}
         }
     ],
-    
+
     "outbounds": 
     [
         {"protocol": "freedom","tag": "direct","settings": {}},
@@ -23,7 +35,6 @@
     {
         "rules": 
         [
-            {"type": "field","outboundTag": "sockstor","domain": ["geosite:tor"]},
             {"type": "field","outboundTag": "blocked","domain": ["geosite:category-ads-all"]}
         ]
     }
