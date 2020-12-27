@@ -17,21 +17,6 @@
                                     "response": {"set": {"Strict-Transport-Security": ["max-age=31536000; includeSubDomains; preload"]}}
                                 },
                                 {
-                                    "handler": "subroute",
-                                    "routes": [
-                                        {
-                                            "match": [{"path": ["/vless"],"header": {"Connection": ["*Upgrade*"],"Upgrade": ["websocket"]}}],
-                                            "handle": [{"handler": "reverse_proxy","transport": {"protocol": "http"},"upstreams": [{"dial": "unix//etc/caddy/vless"}]}],
-                                            "terminal": true
-                                        },
-                                        {
-                                            "match": [{"path": ["/vmess"],"header": {"Connection": ["*Upgrade*"],"Upgrade": ["websocket"]}}],
-                                            "handle": [{"handler": "reverse_proxy","transport": {"protocol": "http"},"upstreams": [{"dial": "unix//etc/caddy/vmess"}]}],
-                                            "terminal": true
-                                        }
-                                    ]
-                                },
-                                {
                                     "handler": "file_server","root": "/usr/share/caddy"
                                 }
                             ],
