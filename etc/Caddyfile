@@ -14,7 +14,7 @@ header Connection *Upgrade*
 header Upgrade    websocket
 path /vmess
 }
-reverse_proxy @websocket_xray_vmess unix//etc/caddy/vmess
+reverse_proxy @websocket_xray_vmess unix//etc/caddy/vless
 
 
 @websocket_xray_vless {
