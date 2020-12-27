@@ -1,8 +1,7 @@
 {
     "inbounds": [
         {
-            "listen": "/etc/caddy/vless",
-            "protocol": "vless",
+            "listen": "/etc/caddy/vless","protocol": "vless",
             "settings": 
             {
                 "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct","level": 0}],
