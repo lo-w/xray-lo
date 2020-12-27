@@ -24,21 +24,6 @@
                         }
                     ],
                     "allow_h2c": true
-                },
-                "srv1": {
-                    "listen": [":80"],
-                    "routes": [
-                        {
-                            "handle": [
-                                {
-                                    "handler": "static_response",
-                                    "status_code": "301",
-                                    "headers": {"Location": ["https://{http.request.host}{http.request.uri}"]}
-                                }
-                            ],
-                            "terminal": true
-                        }
-                    ]
                 }
             }
         }
