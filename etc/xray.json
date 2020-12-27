@@ -6,6 +6,7 @@
             {
                 "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct"}], "decryption": "none",
                 "fallbacks": [
+                    {"dest": "/etc/caddy/xray","xver":1},
                     {"path":"/vless","dest": "@vless-ws","xver":1},
                     {"path":"/vmess","dest": "@vmess-ws","xver":1}
                 ]
