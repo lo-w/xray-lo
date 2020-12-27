@@ -7,7 +7,7 @@
             "description": "UUID URL: https://www.uuidgenerator.net",
             "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/UUID"
         },
-        "CADDYIndexPage": {
+        "CADDYIndex": {
             "description": "CADDY View",
             "value": "https://raw.githubusercontent.com/caddyserver/dist/master/welcome/index.html"
         },
