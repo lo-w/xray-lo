@@ -1,4 +1,4 @@
-# xray-lo
+# Xray-lo
 
 this repo only deploy xray on heroku, for the client usage refer to the user guide.
 
