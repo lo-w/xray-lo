@@ -1,49 +1,61 @@
 {
-  "admin": {"disabled": true},
-  "logging": {"logs": 
-    {
-      "default": {
-        "writer": {"output": "file","filename": "/var/log/caddy/access.log"},
-        "encoder": {"format": "console"},
-        "level": "ERROR"
-      }
-    }
-  },
-  "apps": {
-    "http": {
-      "servers": {
-        "srv0": {
-          "listen": ["unix//etc/caddy/xray"],
-          "listener_wrappers": [{
-            "wrapper": "proxy_protocol"
-          }],
-          "routes": [{
-            "handle": [{
-              "handler": "headers",
-              "response": {
-                "set": {"Strict-Transport-Security": ["max-age=31536000; includeSubDomains; preload"]}
-              }
-            },
-            {"handler": "file_server","root": "/usr/share/caddy"}
-           ],
-            "terminal": true
-          }],
-          "allow_h2c": true
-        },
-        "srv1": {
-          "listen": [":80"],
-          "routes": [{
-            "handle": [{
-              "handler": "static_response",
-              "status_code": "301", 
-              "headers": {
-              	"Location": ["https://{http.request.host}{http.request.uri}"] 
-              }
-            }],
-            "terminal": true
-          }]
+    "admin": {"disabled": true},
+    "logging": {
+        "logs": {"default": {"writer": {"output": "file","filename": "/var/log/caddy/access.log"},"encoder": {"format": "console"},"level": "ERROR"}}
+    },
+    "apps": {
+        "http": {
+            "servers": {
+                "srv0": {
+                    "listen": [":"],
+                    "listener_wrappers": [{"wrapper": "proxy_protocol"}],
+                    "routes": [
+                        {
+                            "handle": [
+                                {
+                                    "handler": "headers",
+                                    "response": {"set": {"Strict-Transport-Security": ["max-age=31536000; includeSubDomains; preload"]}}
+                                },
+                                {
+                                    "handler": "subroute",
+                                    "routes": [
+                                        {
+                                            "match": [{"path": ["/vless"],"header": {"Connection": ["*Upgrade*"],"Upgrade": ["websocket"]}}],
+                                            "handle": [{"handler": "reverse_proxy","transport": {"protocol": "http"},"upstreams": [{"dial": "unix//etc/caddy/vless"}]}],
+                                            "terminal": true
+                                        },
+                                        {
+                                            "match": [{"path": ["/vmess"],"header": {"Connection": ["*Upgrade*"],"Upgrade": ["websocket"]}}],
+                                            "handle": [{"handler": "reverse_proxy","transport": {"protocol": "http"},"upstreams": [{"dial": "unix//etc/caddy/vmess"}]}],
+                                            "terminal": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "handler": "file_server","root": "/usr/share/caddy"
+                                }
+                            ],
+                            "terminal": true
+                        }
+                    ],
+                    "allow_h2c": true
+                },
+                "srv1": {
+                    "listen": [":80"],
+                    "routes": [
+                        {
+                            "handle": [
+                                {
+                                    "handler": "static_response",
+                                    "status_code": "301",
+                                    "headers": {"Location": ["https://{http.request.host}{http.request.uri}"]}
+                                }
+                            ],
+                            "terminal": true
+                        }
+                    ]
+                }
+            }
         }
-      }
     }
-  }
 }
