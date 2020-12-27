@@ -5,7 +5,7 @@
     "env": {
         "AUUID": {
             "description": "UUID URL: https://www.uuidgenerator.net",
-            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/UUID"
+            "value": "https://raw.githubusercontent.com/lo-w/xray-lo/master/etc/UUID"
         },
         "CADDYIndex": {
             "description": "CADDY View",
@@ -13,18 +13,18 @@
         },
         "CONFIGCADDY": {
             "description": "CADDY CONFIG",
-            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/caddy.json"
+            "value": "https://raw.githubusercontent.com/lo-w/xray-lo/master/etc/caddy.json"
         },
         "CONFIGXRAY": {
             "description": "XRAY CONFIG",
-            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/xray.json"
+            "value": "https://raw.githubusercontent.com/lo-w/xray-lo/master/etc/xray.json"
         },
         "StoreFiles": {
             "description": "STORE FILES",
-            "value": "https://raw.githubusercontent.com/lothario5/xray-lo/master/etc/StoreFiles"
+            "value": "https://raw.githubusercontent.com/lo-w/xray-lo/master/etc/StoreFiles"
         }
     },
-    "website": "https://github.com/lothario5/xray-lo",
-    "repository": "https://github.com/lothario5/xray-lo",
+    "website": "https://github.com/lo-w/xray-lo",
+    "repository": "https://github.com/lo-w/xray-lo",
     "stack": "container"
 }
