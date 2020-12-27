@@ -1,6 +1,7 @@
 {
     "inbounds": [
         {
+            "listen": "/etc/caddy/vless",
             "protocol": "vless",
             "settings": 
             {
@@ -14,12 +15,12 @@
             "streamSettings": {"network": "tcp","security": "xtls",}
         },
         {
-            "port": 1234,"listen": "/etc/caddy/vless","protocol": "vless",
+            "port": 1234,"listen": "127.0.0.1","protocol": "vless",
             "settings": {"clients": [{"id": "$AUUID","level": 0,}],"decryption": "none"},
             "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vless"}}
         },
         {
-            "port": 2345,"listen": "/etc/caddy/vmess","protocol": "vmess",
+            "port": 2345,"listen": "127.0.0.1","protocol": "vmess",
             "settings": {"clients": [{"id": "$AUUID","level": 0}]},
             "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vmess"}}
         }
