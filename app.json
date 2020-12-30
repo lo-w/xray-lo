@@ -1,7 +1,7 @@
 {
-    "name": "xray-lo",
-    "description": "only deploy xray on heroku",
-    "keywords": ["vmess vless"],
+    "name": "xray-lo-xtls",
+    "description": "only deploy xray xtls-direct on heroku",
+    "keywords": ["vmess vless xtls-rprx-direct"],
     "env": {
         "AUUID": {
             "description": "UUID URL: https://www.uuidgenerator.net",
