@@ -31,7 +31,7 @@
     {
       "listen": "@trojan-ws","protocol": "trojan",
       "settings": {"clients": [{"password": "$AUUID"}]},
-      "streamSettings": {"network": "ws","security": "xtls","wsSettings": {"path": "/trojan"}}
+      "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/trojan"}}
     }
   ],
 
