@@ -1,14 +1,13 @@
 {
     "admin": {"disabled": true},
     "logging": {
-        "logs": {"default": {"writer": {"output": "file","filename": "/var/log/caddy/access.log"},"encoder": {"format": "console"},"level": "ERROR"}}
+        "logs": {"default": {"writer": {"output": "file","filename": "/var/log/access.log"},"encoder": {"format": "console"},"level": "ERROR"}}
     },
     "apps": {
         "http": {
             "servers": {
                 "srv0": {
-                    "listen": ["unix//etc/caddy/xray"],
-                    "listener_wrappers": [{"wrapper": "proxy_protocol"}],
+                    "listen": ["unix//etc/caddy/xray.sock"],
                     "routes": [
                         {
                             "handle": [
@@ -24,6 +23,19 @@
                         }
                     ],
                     "allow_h2c": true
+                },
+                "srv1": {
+                    "listen": [":80"],
+                    "routes": [
+                       {
+                          "handle": [
+                             {
+                                 "handler": "static_response","status_code": "301","headers": {"Location": ["https://{http.request.host}{http.request.uri}"]}
+                             }
+                          ],
+                          "terminal": true
+                       }
+                    ]
                 }
             }
         }
