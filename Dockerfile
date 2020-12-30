@@ -8,4 +8,7 @@ RUN apk update && \
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
+PORT=443
+EXPOSE $PORT
+
 CMD /start.sh
