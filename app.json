@@ -18,10 +18,6 @@
         "CONFIGXRAY": {
             "description": "XRAY CONFIG",
             "value": "https://raw.githubusercontent.com/lo-w/xray-lo/master/etc/xray.json"
-        },
-        "StoreFiles": {
-            "description": "STORE FILES",
-            "value": "https://raw.githubusercontent.com/lo-w/xray-lo/master/etc/StoreFiles"
         }
     },
     "website": "https://github.com/lo-w/xray-lo",
