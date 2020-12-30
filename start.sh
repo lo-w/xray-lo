@@ -10,5 +10,6 @@ wget -qO- $CONFIGCADDY | sed -e "s/\$AUUID/$AUUID/g" > /etc/caddy/caddy.json
 wget -qO- $CONFIGXRAY | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$PORT/$PORT/g" > /etc/xray.json
 
 # start
+cat /etc/xray.json
 /xray -config /etc/xray.json &
 caddy run --config /etc/caddy/caddy.json
