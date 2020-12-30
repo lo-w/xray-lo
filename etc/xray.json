@@ -1,49 +1,41 @@
 {
-  "inbounds": [
-    {
-      "port": 443, "protocol": "dokodemo-door",
-      "settings": {"address": "0.0.0.0","network": "tcp","followRedirect": false}
-    },
-    {
-      "listen": "/etc/caddy/vless.sock", "protocol": "vless",
-      "settings": {
-        "clients": [{"id": "$AUUID", "flow": "xtls-rprx-direct"}], "decryption": "none",
-        "fallbacks": [
-          {"dest": "/etc/caddy/xray.sock", "xver":0},
-          {"path": "/vless","dest": "@vless-ws","xver":0},
-          {"path": "/vmess","dest": "@vmess-ws","xver":0},
-          {"path": "/trojan","dest": "@trojan-ws","xver":0}
+    "inbounds": [
+        {
+            "listen": "0.0.0.0", "protocol": "vless",
+            "settings":
+            {
+                "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct"}], "decryption": "none",
+                "fallbacks": [
+                    {"dest": "/etc/caddy/xray.sock", "xver": 0},
+                    {"path":"/vless","dest": "@vless-ws","xver":0},
+                    {"path":"/vmess","dest": "@vmess-ws","xver":0}
+                ]
+            },
+            "streamSettings": {"network": "tcp","security": "xtls", "xtlsSettings": {"alpn":["h2", "http/1.1"]}}
+        },
+        {
+            "listen": "@vless-ws","protocol": "vless",
+            "settings": {"clients": [{"id": "$AUUID"}],"decryption": "none"},
+            "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vless"}}
+        },
+        {
+            "listen": "@vmess-ws","protocol": "vmess",
+            "settings": {"clients": [{"id": "$AUUID"}]},
+            "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vmess"}}
+        }
+    ],
 
+    "outbounds":
+    [
+        {"protocol": "freedom","tag": "direct","settings": {}},
+        {"protocol": "blackhole","tag": "blocked","settings": {}}
+    ],
+
+    "routing":
+    {
+        "rules":
+        [
+            {"type": "field","outboundTag": "blocked","domain": ["geosite:category-ads-all"]}
         ]
-      },
-      "streamSettings": {"network": "tcp", "security": "xtls", "xtlsSettings": {"alpn":["h2", "http/1.1"]}}
-    },
-    {
-      "listen": "@vless-ws", "protocol": "vless",
-      "settings": {"clients": [{"id": "$AUUID"}],"decryption": "none"},
-      "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vless"}}
-    },
-    {
-      "listen": "@vmess-ws", "protocol": "vmess",
-      "settings": {"clients": [{"id": "$AUUID"}]},
-      "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/vmess"}}
-    },
-    {
-      "listen": "@trojan-ws","protocol": "trojan",
-      "settings": {"clients": [{"password": "$AUUID"}]},
-      "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "/trojan"}}
     }
-  ],
-
-  "routing": {
-    "rules":[
-      {"type": "field", "domain": ["geosite:category-ads-all"], "outboundTag": "blocked"},
-      {"type": "field", "protocol": ["bittorrent"],"outboundTag": "blocked"}
-    ]
-  },
-
-  "outbounds": [
-    {"protocol": "freedom","tag": "direct","settings": {}},
-    {"protocol": "blackhole","tag": "blocked","settings": {}}
-  ]
 }
