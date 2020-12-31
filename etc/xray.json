@@ -1,7 +1,7 @@
 {
     "inbounds": [
         {
-            "port": "$PORT", "protocol": "vless",
+            "port": $PORT, "protocol": "vless",
             "settings":
             {
                 "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct"}], "decryption": "none",
