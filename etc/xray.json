@@ -1,4 +1,5 @@
 {
+    "log": {"loglevel": "info"},
     "inbounds": [
         {
             "port": $PORT, "protocol": "vless",
