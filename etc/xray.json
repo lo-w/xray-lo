@@ -2,7 +2,7 @@
     "log": {"loglevel": "info"},
     "inbounds": [
         {
-            "port": $PORT, "protocol": "vless",
+            "port": "$PORT", "protocol": "vless",
             "settings":
             {
                 "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct"}], "decryption": "none",
@@ -12,7 +12,7 @@
                     {"path":"/vmess","dest": "@vmess-ws","xver":0}
                 ]
             },
-            "streamSettings": {"network": "tcp","security": "xtls", "xtlsSettings": {"alpn":["h2", "http/1.1"]}}
+            "streamSettings": {"network": "tcp","security": "none"}
         },
         {
             "listen": "@vless-ws","protocol": "vless",
