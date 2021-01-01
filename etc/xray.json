@@ -1,5 +1,5 @@
 {
-    "log": {"loglevel": "info"},
+    "log": {"loglevel": "error"},
     "inbounds": [
         {
             "port": "$PORT", "protocol": "vless",
@@ -8,11 +8,17 @@
                 "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct"}], "decryption": "none",
                 "fallbacks": [
                     {"dest": "/etc/caddy/xray.sock", "xver": 0},
+                    {"path":"/trojan","dest": "@trojan-ws","xver":0},
                     {"path":"/vless","dest": "@vless-ws","xver":0},
                     {"path":"/vmess","dest": "@vmess-ws","xver":0}
                 ]
             },
             "streamSettings": {"network": "tcp","security": "none"}
+        },
+        {
+            "listen": "@trojan-ws","protocol": "trojan",
+            "settings": {"clients": [{"password": "$AUUID"}]},
+            "streamSettings": {"network": "ws","wsSettings": {"path": "/trojan"}}
         },
         {
             "listen": "@vless-ws","protocol": "vless",
