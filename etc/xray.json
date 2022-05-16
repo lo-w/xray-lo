@@ -7,9 +7,9 @@
             {
                 "clients": [{"id": "$AUUID","flow": "xtls-rprx-direct"}], "decryption": "none",
                 "fallbacks": [
-                    {"dest": "@trojan-ws", "xver":1},
-                    {"path":"/vless","dest": "@vless-ws","xver":1},
-                    {"path":"/vmess","dest": "@vmess-ws","xver":1}
+                    {"dest": "@trojan-ws", "xver":0},
+                    {"path":"/vless","dest": "@vless-ws","xver":0},
+                    {"path":"/vmess","dest": "@vmess-ws","xver":0}
                 ]
             },
             "streamSettings": {"network": "tcp","security": "none"}
